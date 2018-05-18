@@ -34,7 +34,7 @@ class CountryController {
 
 	/*---Get a record list---*/
 	@GetMapping(value="/country", produces=MediaType.APPLICATION_JSON_VALUE)
-	def List<Country> list(){		
+	def List<Country> list(){
 		return countryService.list()
 	}
 

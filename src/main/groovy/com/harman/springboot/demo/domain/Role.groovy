@@ -1,5 +1,7 @@
 package com.harman.springboot.demo.domain
 
+import static javax.persistence.CascadeType.PERSIST
+import static javax.persistence.FetchType.LAZY
 import static javax.persistence.GenerationType.AUTO
 
 import javax.persistence.CascadeType
@@ -12,23 +14,22 @@ import javax.persistence.OneToMany
 import javax.persistence.Table
 
 @Entity
-@Table(name="CRY_COUNTRY")
-class Country {
+@Table(name="role")
+class Role {
 
 	@Id
 	@GeneratedValue(strategy=AUTO)
-	@Column(name="country_id")
-	Long countryId;
+	@Column(name="role_id")
+	Long roleId
 
-	@Column(name="name")
-	String name
+	@Column(name="role_name")
+	String roleName
 
-	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="country")
-	List<State> state
-
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST, mappedBy="role")
+	Set<User> users
 
 	@Override
 	public String toString() {
-		return "Country [countryId=" + countryId + ", name=" + name + ", state=" + state + "]";
+		return "Role [roleId=" + roleId + ", roleName=" + roleName + ", users=" + users + "]";
 	}
 }
