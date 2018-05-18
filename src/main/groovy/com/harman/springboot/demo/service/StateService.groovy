@@ -3,7 +3,9 @@ package com.harman.springboot.demo.service
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
+import com.harman.springboot.demo.domain.Country
 import com.harman.springboot.demo.domain.State
+import com.harman.springboot.demo.repository.CountryRepository
 import com.harman.springboot.demo.repository.StateRepository
 
 
@@ -11,8 +13,14 @@ import com.harman.springboot.demo.repository.StateRepository
 class StateService {
 	@Autowired
 	StateRepository stateRepository
+	
+	@Autowired
+	CountryRepository countryRepository
 
 	def save(State state){
+		//Load persistent country entity from db
+		Country country=countryRepository.findByCountryId(state.getCountry().getCountryId())
+		state.setCountry(country)
 		stateRepository.save(state)
 	}
 	
