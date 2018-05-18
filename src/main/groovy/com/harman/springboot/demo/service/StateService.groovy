@@ -17,10 +17,7 @@ class StateService {
 	@Autowired
 	CountryRepository countryRepository
 
-	def save(State state){
-		//Load persistent country entity from db
-		Country country=countryRepository.findByCountryId(state.getCountry().getCountryId())
-		state.setCountry(country)
+	def save(State state){		
 		stateRepository.save(state)
 	}
 	
