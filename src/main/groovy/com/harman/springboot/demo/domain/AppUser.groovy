@@ -2,6 +2,8 @@ package com.harman.springboot.demo.domain
 
 import static javax.persistence.GenerationType.AUTO
 
+import java.util.Collection
+
 import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -13,11 +15,14 @@ import javax.persistence.ManyToOne
 import javax.persistence.Table
 import javax.persistence.Transient
 
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
+
 import com.fasterxml.jackson.annotation.JsonIgnore
 
 @Entity
 @Table(name="user")
-class User {
+class AppUser implements UserDetails{
 
 	@Id
 	@GeneratedValue(strategy=AUTO)
@@ -35,8 +40,8 @@ class User {
 	@JoinColumn(name="role_id")
 	Role role
 
-	//@Transient
-	//Collection<GrantedAuthority> grantedAuthorities
+	@Transient
+	Collection<GrantedAuthority> grantedAuthorities
 
 	boolean accountNonExpired=true
 	boolean accountNonLocked=true
@@ -47,5 +52,11 @@ class User {
 		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", role=" + role
 		+ ", accountNonExpired=" + accountNonExpired + ", accountNonLocked=" + accountNonLocked
 		+ ", credentialsNonExpired=" + credentialsNonExpired + ", enabled=" + enabled + "]"
+	}
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

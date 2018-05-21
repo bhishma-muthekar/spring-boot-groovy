@@ -7,4 +7,5 @@ import com.harman.springboot.demo.domain.Role;
 
 @Repository
 interface RoleRepository extends JpaRepository<Role, Long>{
+	public Role findByRoleId(Long roleId);
 }

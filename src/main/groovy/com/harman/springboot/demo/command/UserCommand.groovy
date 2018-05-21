@@ -1,4 +1,4 @@
-package com.harman.springboot.demo.domain
+package com.harman.springboot.demo.command
 
 import org.springframework.stereotype.Component
 
