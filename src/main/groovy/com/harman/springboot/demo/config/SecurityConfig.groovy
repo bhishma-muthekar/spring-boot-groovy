@@ -45,8 +45,6 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		/*auth.userDetailsService(userDetailsService)
-		 .passwordEncoder(new ShaPasswordEncoder(encodingStrength));*/
 		auth.userDetailsService(userDetailsService)
 				.passwordEncoder(new BCryptPasswordEncoder());
 	}
@@ -61,7 +59,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.realmName(securityRealm)
 				.and()
 				.csrf()
-				.disable()				
+				.disable()
 	}
 
 	@Bean
