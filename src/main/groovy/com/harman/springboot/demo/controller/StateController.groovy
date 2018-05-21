@@ -37,6 +37,12 @@ class StateController {
 		return stateService.list()
 	}
 
+	/*---Show pagination---*/
+	@RequestMapping(value ="/state-page/{pageNo}/{pageSize}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+	def showStatePage(@PathVariable("pageNo") int pageNo, @PathVariable("pageSize") int pageSize){
+		return stateService.findPage(pageNo, pageSize)
+	}
+
 	/*---Get a record by id---*/
 	@GetMapping("/state/{id}")
 	def get(@PathVariable("id") Long id) {
